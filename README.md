@@ -13,7 +13,7 @@
     <a href="https://people.csail.mit.edu/ganchuang">Chuang Gan</a>
   </p>
   <p align="center">
-    <a href="">
+    <a href="https://arxiv.org/abs/2504.20995">
       <img src='https://img.shields.io/badge/Paper-PDF-red?style=flat&logo=arXiv&logoColor=red' alt='Paper PDF'>
     </a>
     <a href='https://tesseractworld.github.io' style='padding-left: 0.5rem;'>
@@ -105,7 +105,15 @@ python inference/inference_rgbdn_sft.py \
 ## Citation
 If you find our work useful, please consider citing:
 ```bibtex
-to be added
+@article{zhen2025tesseract,
+  title={TesserAct: Learning 4D Embodied World Models}, 
+  author={Haoyu Zhen and Qiao Sun and Hongxin Zhang and Junyan Li and Siyuan Zhou and Yilun Du and Chuang Gan},
+  year={2025},
+  eprint={2504.20995},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2504.20995}, 
+}
 ```
 
 ## Acknowledgements
