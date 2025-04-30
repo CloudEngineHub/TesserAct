@@ -111,10 +111,7 @@ This inference code will generate a video of the google robot picking up the app
 You may find your results in the `results` folder:
 
 <p align="center">
-    <video width="50%" height="50%" controls>
-        <source src="https://github.com/UMass-Embodied-AGI/TesserAct/raw/refs/heads/main/results/val_0_pick_up_the_apple_google_robot_0.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <img src="asset/images/val_0_pick_up_the_apple_google_robot_0.gif" alt="Logo" width="50%">
 </p>
 
 > [!WARNING]
