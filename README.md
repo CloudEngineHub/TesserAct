@@ -95,7 +95,7 @@ We provide a guide on how to prepare inputs, such as text prompt. We also analyz
 >
 > - Tasks that are currently beyond the model's capabilities.
 
-You can run the inference code with the following command:
+You can run the inference code with the following command (Optional flags: `--memory_efficient`).
 ```bash
 python inference/inference_rgbdn_sft.py \
   --weights_path anyeZHY/tesseract/tesseract_v01e_rgbdn_sft \
@@ -108,7 +108,9 @@ This inference code will generate a video of the google robot picking up the app
     <img src="asset/images/fruit_vangogh.png" alt="Logo" width="50%">
 </p>
 
-You may find your results in the `results` folder:
+You may find output videos in the `results` folder.
+Note: when we test the model on another server, the results are exactly the same as the ones we uploaded to github.
+So if you find they are different and get unexpected results like noisy videos, please check your environment and the version of the packages you are using.
 
 <p align="center">
     <img src="asset/images/val_0_pick_up_the_apple_google_robot_0.gif" alt="Logo" width="50%">

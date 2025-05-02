@@ -38,6 +38,7 @@ def validate(
     num_validation_videos: int = 1,
     fps: int = 8,
     mixed_precision: str = "bf16",
+    memory_efficient: bool = False,
 ):
     # --------------------------------------
     # 1. Set up precision and device
@@ -80,6 +81,11 @@ def validate(
 
     # Load DPMScheduler or your custom scheduler config
     pipe.scheduler = CogVideoXDPMScheduler.from_config(pipe.scheduler.config)
+
+    if memory_efficient:
+        pipe.vae.enable_slicing()
+        pipe.vae.enable_tiling()
+        pipe.enable_model_cpu_offload()
 
     for im_idx, (prompt, image_path) in enumerate(zip(validation_prompts, validation_images)):
         print(f"Running validation for prompt: {prompt}")
@@ -148,6 +154,7 @@ if __name__ == "__main__":
     parser.add_argument("--weights_path", type=str, default="anyezhy/tesseract/tesseract_v01e_rgbdn_sft")
     parser.add_argument("--image_path", type=str, default="asset/images/fruit_vangogh.png")
     parser.add_argument("--prompt", type=str, default="pick up the apple google robot")
+    parser.add_argument("--memory_efficient", action="store_true", default=False)
     args = parser.parse_args()
 
     pretrained_model = "THUDM/CogVideoX-5b-I2V"  # always use this model
@@ -175,4 +182,5 @@ if __name__ == "__main__":
             num_validation_videos=2,
             fps=8,
             mixed_precision="bf16",
+            memory_efficient=args.memory_efficient,
         )
