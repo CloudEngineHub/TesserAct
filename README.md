@@ -57,7 +57,8 @@ and normal videos, reconstructing a 4D scene and predicting actions.
 </details>
 
 ## News
-- [2025-04] We have released the inference code and TesserAct-v0.1 model weights!
+- [2025-05-04] We add [USAGE.MD](doc/usage.md) to provide more details about the model and how to use the models on your own data!
+- [2025-04-29] We have released the inference code and TesserAct-v0.1 model weights!
 
 ## Installation
 Create a conda environment and install the required packages:
@@ -101,6 +102,7 @@ python inference/inference_rgbdn_sft.py \
   --weights_path anyeZHY/tesseract/tesseract_v01e_rgbdn_sft \
   --image_path asset/images/fruit_vangogh.png \
   --prompt "pick up the apple google robot"
+# Try other prompts like "pick up the pear Franka Emika Panda"!
 ```
 
 This inference code will generate a video of the google robot picking up the apple in the Van Gogh Painting.

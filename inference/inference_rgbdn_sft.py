@@ -2,9 +2,7 @@ import os
 import gc
 import torch
 import cv2
-import jsonlines
 import numpy as np
-from PIL import Image
 from diffusers.utils import load_image, export_to_video
 from diffusers import CogVideoXDPMScheduler
 
@@ -103,7 +101,7 @@ def validate(
         val_image = val_image / 255.0  # [0, 1]
 
         # ==== load depth image ====
-        depth_path = validation_image.replace(".png", "_depth.npy")
+        depth_path = validation_image.replace(".png", "").replace(".jpg", "") + "_depth.npy"
         depth_image = np.load(depth_path)
         depth_image = 1 - depth_image
         depth_image = crop_and_resize_frames([depth_image], (height, width))[0]
@@ -113,7 +111,7 @@ def validate(
             depth_image = (depth_image + 1.0) / 2.0  # [0, 1]
 
         # ==== load normal image ====
-        normal_image = validation_image.replace(".png", "_normal.png")
+        normal_image = validation_image.replace(".png", "").replace(".jpg", "") + "_normal.png"
         normal_image = cv2.cvtColor(cv2.imread(normal_image), cv2.COLOR_BGR2RGB)
 
         normal_image = crop_and_resize_frames([normal_image], (height, width))[0]
