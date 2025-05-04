@@ -30,8 +30,8 @@ and normal videos, reconstructing a 4D scene and predicting actions.
 
 <table align="center">
 <tr>
-  <td align="center"><video src="https://github.com/UMass-Embodied-AGI/TesserAct/raw/refs/heads/main/results/val_0_pick_up_the_apple_google_robot_0.mp4">Your browser does not support the video tag.</video></td>
-  <td align="center"><video src="https://github.com/UMass-Embodied-AGI/TesserAct/raw/refs/heads/main/results/val_0_move_the_cup_near_bottle_Franka_Emika_Panda_1.mp4">Your browser does not support the video tag.</video></td>
+  <td align="center"><video src="https://github.com/user-attachments/assets/3d3ae5f5-4635-47b0-83fe-4b52835c416e">Your browser does not support the video tag.</video></td>
+  <td align="center"><video src="https://github.com/user-attachments/assets/10401ef7-3bc1-4d61-ae5a-db0da0a67ec6">Your browser does not support the video tag.</video></td>
 </tr>
 <tr>
   <th align="center">Pick up the apple with Google Robot</th>
