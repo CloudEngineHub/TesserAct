@@ -26,18 +26,7 @@
 </p>
 
 We propose TesserAct, the 4D Embodied World Model, which takes input images and text instructions to generate RGB, depth,
-and normal videos, reconstructing a 4D scene and predicting actions. The following results are from the TesserAct model **without** cherry-picking.
-
-<table align="center">
-<tr>
-  <td align="center"><video src="https://github.com/user-attachments/assets/3d3ae5f5-4635-47b0-83fe-4b52835c416e">Your browser does not support the video tag.</video></td>
-  <td align="center"><video src="https://github.com/user-attachments/assets/10401ef7-3bc1-4d61-ae5a-db0da0a67ec6">Your browser does not support the video tag.</video></td>
-</tr>
-<tr>
-  <th align="center" width="50%">Pick up the apple with Google Robot</th>
-  <th align="center" width="50%">Move the cup near bottle with Franka Emika Panda</th>
-</tr>
-</table>
+and normal videos, reconstructing a 4D scene and predicting actions.
 
 <p align="center">
     <img src="asset/teaser.png" alt="Logo" width="190%">
@@ -116,12 +105,9 @@ python inference/inference_rgbdn_sft.py \
   --prompt "pick up the apple google robot"
 ```
 This inference code will generate a video of the google robot picking up the apple in the Van Gogh Painting. Try other prompts like `pick up the pear Franka Emika Panda`! Or `asset/images/majo.jpg` with prompt `Move the cup near bottle Franka Emika Panda`!
-<p align="center">
-    <img src="asset/images/fruit_vangogh.png" alt="Logo" width="50%">
-</p>
 
 You may find output videos in the `results` folder.
-Note: when we test the model on another server, the results are exactly the same as the ones we uploaded to github.
+Note: When we test the model on another server, the results are exactly the same as those we uploaded to GitHub.
 So if you find they are different and get unexpected results like noisy videos, please check your environment and the version of the packages you are using.
 
 > [!WARNING]
