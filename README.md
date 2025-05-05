@@ -25,8 +25,8 @@
   </p>
 </p>
 
-We propose TesserAct, the 4D Embodied World Model, which takes input images and text instruction to generate RGB, depth,
-and normal videos, reconstructing a 4D scene and predicting actions.
+We propose TesserAct, the 4D Embodied World Model, which takes input images and text instructions to generate RGB, depth,
+and normal videos, reconstructing a 4D scene and predicting actions. The following results are from the TesserAct model **without** cherry-picking.
 
 <table align="center">
 <tr>
@@ -34,8 +34,8 @@ and normal videos, reconstructing a 4D scene and predicting actions.
   <td align="center"><video src="https://github.com/user-attachments/assets/10401ef7-3bc1-4d61-ae5a-db0da0a67ec6">Your browser does not support the video tag.</video></td>
 </tr>
 <tr>
-  <th align="center">Pick up the apple with Google Robot</th>
-  <th align="center">Move the cup near bottle with Franka Emika Panda</th>
+  <th align="center" width="50%">Pick up the apple with Google Robot</th>
+  <th align="center" width="50%">Move the cup near bottle with Franka Emika Panda</th>
 </tr>
 </table>
 
@@ -68,7 +68,8 @@ and normal videos, reconstructing a 4D scene and predicting actions.
 </details>
 
 ## News
-- [2025-05-04] We add [USAGE.MD](doc/usage.md) to provide more details about the model and how to use the models on your own data!
+- [2025-05-05] We have updated the gallery and added more results on the [project website](https://tesseractworld.github.io).
+- [2025-05-04] We add [USAGE.MD](doc/usage.md) to provide more details about the models and how to use the models on your own data!
 - [2025-04-29] We have released the inference code and TesserAct-v0.1 model weights!
 
 ## Installation
@@ -114,7 +115,7 @@ python inference/inference_rgbdn_sft.py \
   --image_path asset/images/fruit_vangogh.png \
   --prompt "pick up the apple google robot"
 ```
-Try other prompts like `pick up the pear Franka Emika Panda`! Or `asset/images/majo.jpg` with prompt `Move the cup near bottle Franka Emika Panda`! This inference code will generate a video of the google robot picking up the apple in the Van Gogh Painting.
+This inference code will generate a video of the google robot picking up the apple in the Van Gogh Painting. Try other prompts like `pick up the pear Franka Emika Panda`! Or `asset/images/majo.jpg` with prompt `Move the cup near bottle Franka Emika Panda`!
 <p align="center">
     <img src="asset/images/fruit_vangogh.png" alt="Logo" width="50%">
 </p>
