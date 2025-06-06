@@ -25,7 +25,7 @@
   </p>
 </p>
 
-We propose TesserAct, the 4D Embodied World Model, which takes input images and text instructions to generate RGB, depth,
+We propose TesserAct, **the first open-source and generalized 4D Embodied World Model for robotics**, which takes input images and text instructions to generate RGB, depth,
 and normal videos, reconstructing a 4D scene and predicting actions.
 
 <p align="center">
@@ -57,6 +57,7 @@ and normal videos, reconstructing a 4D scene and predicting actions.
 </details>
 
 ## News
+- [2025-06-06] We have released the training code and data generation scripts!
 - [2025-05-05] We have updated the gallery and added more results on the [project website](https://tesseractworld.github.io).
 - [2025-05-04] We add [USAGE.MD](doc/usage.md) to provide more details about the models and how to use the models on your own data!
 - [2025-04-29] We have released the inference code and TesserAct-v0.1 model weights!
@@ -73,10 +74,32 @@ cd TesserAct
 pip install -e .
 ```
 
+## Data Preparation
+Please refer to [DATA.md](DATA.md) for data generation scripts and dataset preparation.
+
 ## Training
-We plan to release the training code in about two weeks. Our code is based on early versions of [Finetrainers](https://github.com/a-r-r-o-w/finetrainers).
+
+To pre-train the full TesserAct model from CogVideoX, we provide a training script based on [Finetrainers](https://github.com/a-r-r-o-w/finetrainers). The training code supports distributed training with multiple GPUs or multi-nodes.
+
+To pre-train our TesserAct model, run the following command:
+```bash
+bash train_i2v_depth_normal_sft.sh
+```
+
+To fine-tune our released TesserAct model, modify the model loading code in [tesseract/i2v_depth_normal_sft.py](tesseract/i2v_depth_normal_sft.py):
+```python
+transformer = CogVideoXTransformer3DModel.from_pretrained_modify(
+    "anyeZHY/tesseract/",
+    subfolder="tesseract_v01e_rgbdn_sft",
+    ...
+)
+```
 
 > [!NOTE]
+> We will give a detailed training guide in the future: why TesserAct has better generalization, how to set the hyperparameters and performance between different training methods (SFT vs LoRA).
+>
+> We will release LoRA fine-tuning code in the future for more efficient training.
+>
 > We don't have a clear plan for releasing the whole dataset yet, because depth data is usually stored as floats, which takes up a lot of space and makes uploading to Hugging Face very difficult. However, we will provide scripts later on to show how to prepare the data.
 
 ## Inference

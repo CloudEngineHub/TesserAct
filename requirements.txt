@@ -1,3 +1,6 @@
+opencv-python
+imageio
+imageio-ffmpeg
 accelerate
 bitsandbytes
 datasets>=3.3.2
@@ -18,3 +21,5 @@ imageio-ffmpeg>=0.5.1
 numpy>=1.26.4
 kornia>=0.7.3
 ruff==0.9.10
+tensorboard
+jsonlines

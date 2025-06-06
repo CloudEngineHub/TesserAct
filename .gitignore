@@ -1,5 +1,10 @@
 env-tesseract
 hub
+data
+cache
+runs
+tmp
+wandb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

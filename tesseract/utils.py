@@ -338,3 +338,17 @@ def crop_and_resize_frames(frames, target_size, interpolation="bilinear"):
         processed_frames.append(resized_frame)
 
     return processed_frames
+
+
+def read_video_first_frame(video_path: str) -> np.ndarray:
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        raise ValueError(f"Could not open video file: {video_path}")
+
+    ret, frame = cap.read()
+    cap.release()
+
+    if not ret:
+        raise ValueError(f"No frames available in video: {video_path}")
+
+    return cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
