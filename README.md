@@ -25,8 +25,7 @@
   </p>
 </p>
 
-We propose TesserAct, **the first open-source and generalized 4D Embodied World Model for robotics**, which takes input images and text instructions to generate RGB, depth,
-and normal videos, reconstructing a 4D scene and predicting actions.
+We propose TesserAct, **the first open-source and generalized 4D World Model for robotics**, which takes input images and text instructions to generate RGB, depth, and normal videos, reconstructing a 4D scene and predicting actions.
 
 <p align="center">
     <img src="asset/teaser.png" alt="Logo" width="190%">
@@ -40,6 +39,9 @@ and normal videos, reconstructing a 4D scene and predicting actions.
   <ol>
     <li>
       <a href="#installation">Installation</a>
+    </li>
+    <li>
+      <a href="#data-preparation">Data Preparation</a>
     </li>
     <li>
       <a href="#training">Training</a>
