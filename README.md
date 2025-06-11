@@ -91,7 +91,7 @@ bash train_i2v_depth_normal_sft.sh
 To fine-tune our released TesserAct model, modify the model loading code in [tesseract/i2v_depth_normal_sft.py](tesseract/i2v_depth_normal_sft.py):
 ```python
 transformer = CogVideoXTransformer3DModel.from_pretrained_modify(
-    "anyeZHY/tesseract/",
+    "anyeZHY/tesseract",
     subfolder="tesseract_v01e_rgbdn_sft",
     ...
 )
