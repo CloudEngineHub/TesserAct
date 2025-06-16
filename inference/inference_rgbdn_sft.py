@@ -58,7 +58,7 @@ def validate(
     )
     print("Loading custom transformer checkpoint...")
     if os.path.exists(weights_path):
-        subfolder = "transformer"
+        subfolder = None
     else:
         subfolder = weights_path.split("/")[-1]
         weights_path = "/".join(weights_path.split("/")[:-1])
