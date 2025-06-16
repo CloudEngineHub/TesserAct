@@ -457,14 +457,7 @@ class RoboDepth(RoboDataset):
         return depth_array
 
     def get_depth_data(self, rgb_dir, rgb_video, target_size) -> Tuple[torch.Tensor, bool]:
-        if "ssv2" in str(rgb_dir):
-            depth_path = Path("not-exist")
-        elif "rlbench" in str(rgb_dir):
-            depth_path = Path(str(rgb_dir).replace("video", "depth/npz").replace("rgb.mp4", "depth.npz"))
-        elif rgb_dir.is_dir():
-            depth_path = Path(str(rgb_dir).replace("rgb", "depth_rolling/npz/depth.npz"))
-        else:
-            depth_path = Path(str(rgb_dir.parent).replace("video", "image/depth_rolling/npz/depth.npz"))
+        depth_path = Path(str(rgb_dir).replace("video", "depth/npz").replace("rgb.mp4", "depth.npz"))
 
         if depth_path.exists():
             depth_video = self._read_depth_data(depth_path)  # [T, H, W]
