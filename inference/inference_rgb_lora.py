@@ -7,6 +7,7 @@ from diffusers import CogVideoXImageToVideoPipeline, CogVideoXDPMScheduler
 from diffusers.utils import load_image, export_to_video
 from tesseract.utils import crop_and_resize_frames, print_memory
 from huggingface_hub import snapshot_download
+import gc
 
 torch.set_grad_enabled(False)
 # seed everything
@@ -28,6 +29,7 @@ def validate(
     num_validation_videos: int = 1,
     fps: int = 8,
     mixed_precision: str = "bf16",
+    memory_efficient: bool = False,
 ):
     """
     Simplified validation process:
@@ -48,6 +50,7 @@ def validate(
         num_validation_videos (int): Number of videos to generate per prompt.
         fps (int): Frame rate of the output video.
         mixed_precision (str): Mixed precision setting, one of "fp16", "bf16", or "no".
+        memory_efficient (bool): Whether to use memory efficient processing.
     """
     # Determine the weight dtype
     if mixed_precision == "fp16":
@@ -82,6 +85,12 @@ def validate(
     # Set LoRA adapter scaling factor (adjust as needed)
     pipe.set_adapters(["cogvideox-lora"], [1.0])
 
+    # Memory optimization
+    if memory_efficient:
+        pipe.vae.enable_slicing()
+        pipe.vae.enable_tiling()
+        pipe.enable_model_cpu_offload()
+
     # Run validation
     # for prompt, image_path in zip(validation_prompts, validation_images):
     for im_idx, (prompt, image_path) in enumerate(zip(validation_prompts, validation_images)):
@@ -94,6 +103,8 @@ def validate(
         image = image.permute(2, 0, 1).unsqueeze(0)
 
         for idx in range(num_validation_videos):
+            gc.collect()
+            torch.cuda.empty_cache()
             result = pipe(
                 image=image,
                 prompt=prompt,
@@ -131,17 +142,19 @@ if __name__ == "__main__":
     out_dir = "./results"
     os.makedirs(out_dir, exist_ok=True)
 
-    validate(
-        pretrained_model_path=pretrained_model,
-        lora_weights_path=lora_weights,
-        validation_prompts=val_prompts,
-        validation_images=val_images,
-        output_dir=out_dir,
-        guidance_scale=7.5,
-        use_dynamic_cfg=True,
-        height=480,
-        width=640,
-        num_validation_videos=1,
-        fps=8,
-        mixed_precision="fp16",
-    )
+    with torch.no_grad():
+        validate(
+            pretrained_model_path=pretrained_model,
+            lora_weights_path=lora_weights,
+            validation_prompts=val_prompts,
+            validation_images=val_images,
+            output_dir=out_dir,
+            guidance_scale=7.5,
+            use_dynamic_cfg=True,
+            height=480,
+            width=640,
+            num_validation_videos=1,
+            fps=8,
+            mixed_precision="fp16",
+            memory_efficient=args.memory_efficient,
+        )

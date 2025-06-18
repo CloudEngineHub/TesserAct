@@ -59,6 +59,7 @@ We propose TesserAct, **the first open-source and generalized 4D World Model for
 </details>
 
 ## News
+- [2025-06-18] We provide a RGB-only LoRA inference script that achieves the best generalization ability for robotics video generation.
 - [2025-06-06] We have released the training code and data generation scripts!
 - [2025-05-05] We have updated the gallery and added more results on the [project website](https://tesseractworld.github.io).
 - [2025-05-04] We add [USAGE.MD](doc/usage.md) to provide more details about the models and how to use the models on your own data!
