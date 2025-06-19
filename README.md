@@ -45,6 +45,14 @@ We propose TesserAct, **the first open-source and generalized 4D World Model for
     </li>
     <li>
       <a href="#training">Training</a>
+        <ul>
+          <li>
+            <a href="#pre-training-or-full-fine-tuning">Pre-training or Full Fine-tuning</a>
+          </li>
+          <li>
+            <a href="#lora-fine-tuning">LoRA Fine-tuning</a>
+          </li>
+        </ul>
     </li>
     <li>
       <a href="#inference">Inference</a>
@@ -59,6 +67,7 @@ We propose TesserAct, **the first open-source and generalized 4D World Model for
 </details>
 
 ## News
+- [2025-06-19] We provide an efficient RGB+Depth+Normal LoRA fine-tuning script for custom datasets.
 - [2025-06-18] We provide a RGB-only LoRA inference script that achieves the best generalization ability for robotics video generation.
 - [2025-06-06] We have released the training code and data generation scripts!
 - [2025-05-05] We have updated the gallery and added more results on the [project website](https://tesseractworld.github.io).
@@ -81,7 +90,7 @@ pip install -e .
 Please refer to [DATA.md](DATA.md) for data generation scripts and dataset preparation.
 
 ## Training
-
+### Pre-training or Full Fine-tuning
 To pre-train the full TesserAct model from CogVideoX, we provide a training script based on [Finetrainers](https://github.com/a-r-r-o-w/finetrainers). The training code supports distributed training with multiple GPUs or multi-nodes.
 
 To pre-train our TesserAct model, run the following command:
@@ -98,10 +107,20 @@ transformer = CogVideoXTransformer3DModel.from_pretrained_modify(
 )
 ```
 
+### LoRA Fine-tuning
+
+> [!WARNING]
+> **LoRA fine-tuning is experimental and not fully tested yet.**
+
+You can efficiently fine-tune our TesserAct model using LoRA (Low-Rank Adaptation) with your own data (~100 videos). This approach requires approximately **~30GB GPU memory** and allows for efficient training (~2 days) on custom datasets.
+
+To fine-tune using LoRA, run the following command:
+```bash
+bash train_i2v_depth_normal_lora.sh
+```
+
 > [!NOTE]
 > We will give a detailed training guide in the future: why TesserAct has better generalization, how to set the hyperparameters and performance between different training methods (SFT vs LoRA).
->
-> We will release LoRA fine-tuning code in the future for more efficient training.
 >
 > We don't have a clear plan for releasing the whole dataset yet, because depth data is usually stored as floats, which takes up a lot of space and makes uploading to Hugging Face very difficult. However, we will provide scripts later on to show how to prepare the data.
 
@@ -140,6 +159,15 @@ python inference/inference_rgb_lora.py \
   --prompt "pick up the apple google robot"
 ```
 The RGB LoRA model offers the best generalization quality for RGB video generation, making it ideal for diverse robotic manipulation tasks.
+
+For RGB+Depth+Normal generation using the LoRA model, you can use:
+```bash
+python inference/inference_rgbdn_lora.py \
+  --base_weights_path anyeZHY/tesseract/tesseract_v01e_rgbdn_sft \
+  --lora_weights_path ./your_local_lora_weights \
+  --image_path asset/images/fruit_vangogh.png \
+  --prompt "pick up the apple google robot"
+```
 
 You may find output videos in the `results` folder.
 Note: When we test the model on another server, the results are exactly the same as those we uploaded to GitHub.
