@@ -109,15 +109,15 @@ transformer = CogVideoXTransformer3DModel.from_pretrained_modify(
 
 ### LoRA Fine-tuning
 
-> [!WARNING]
-> **LoRA fine-tuning is experimental and not fully tested yet.**
-
 You can efficiently fine-tune our TesserAct model using LoRA (Low-Rank Adaptation) with your own data (~100 videos). This approach requires approximately **~30GB GPU memory** and allows for efficient training (~2 days) on custom datasets.
 
 To fine-tune using LoRA, run the following command:
 ```bash
 bash train_i2v_depth_normal_lora.sh
 ```
+
+> [!WARNING]
+> LoRA fine-tuning is experimental and not fully tested yet.
 
 > [!NOTE]
 > We will give a detailed training guide in the future: why TesserAct has better generalization, how to set the hyperparameters and performance between different training methods (SFT vs LoRA).
