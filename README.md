@@ -1,7 +1,7 @@
 <p align="center">
   <h1 align="center">TesserAct: Learning 4D Embodied World Models</h1>
   <p align="center">
-    arXiv 2025
+    ICCV 2025
   </p>
   <p align="center">
     <a href="https://haoyuzhen.com">Haoyu Zhen*</a>,
@@ -67,6 +67,7 @@ We propose TesserAct, **the first open-source and generalized 4D World Model for
 </details>
 
 ## News
+- [2025-06-25] TesserAct is accepted to ICCV 2025!
 - [2025-06-19] We provide an efficient RGB+Depth+Normal LoRA fine-tuning script for custom datasets.
 - [2025-06-18] We provide a RGB-only LoRA inference script that achieves the best generalization ability for robotics video generation.
 - [2025-06-06] We have released the training code and data generation scripts!
@@ -122,7 +123,7 @@ bash train_i2v_depth_normal_lora.sh
 > [!NOTE]
 > We will give a detailed training guide in the future: why TesserAct has better generalization, how to set the hyperparameters and performance between different training methods (SFT vs LoRA).
 >
-> We don't have a clear plan for releasing the whole dataset yet, because depth data is usually stored as floats, which takes up a lot of space and makes uploading to Hugging Face very difficult. However, we will provide scripts later on to show how to prepare the data.
+> We don't have a clear plan for releasing the whole dataset yet, because depth data is usually stored as floats, which takes up a lot of space and makes uploading to Hugging Face very difficult. However, we've provided scripts to show how to prepare the data.
 
 ## Inference
 
